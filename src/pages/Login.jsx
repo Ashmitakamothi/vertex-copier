@@ -180,7 +180,7 @@ export default function Login() {
             {isLoading ? 'Signing in...' : 'Sign in'}
           </button>
 
-          <p className="auth__footer text-center text-[14px] text-[#64748b]">
+          <p className="auth__footer text-center text-[12px] text-[#64748B] mt-[2px]" style={{ fontFamily: '"IBM Plex Sans", "Segoe UI", system-ui, sans-serif' }}>
             {isSetup ? (
               <>Just want to sign in? <Link to="?" className="text-[12px] text-[#2F6FB0] hover:text-[#0c6b76] hover:underline cursor-pointer" style={{ fontFamily: '"IBM Plex Sans", "Segoe UI", system-ui, sans-serif' }}>Back to sign in</Link></>
             ) : (
