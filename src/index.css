@@ -1,3 +1,51 @@
+:root {
+  --color-bg: #f4f6f9;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f7f9fb;
+  --color-surface-hover: #f1f4f8;
+  --color-border: #dfe5ec;
+  --color-border-strong: #c8d1dc;
+  --color-sidebar: #0f1d33;
+  --color-sidebar-hover: #182a47;
+  --color-sidebar-text: #b9c5d8;
+  --color-sidebar-heading: #7f8ea6;
+  --color-sidebar-active: #1c7fb5;
+  --color-primary: #0f7f8c;
+  --color-primary-hover: #0c6b76;
+  --color-primary-soft: #e0f2f4;
+  --color-primary-soft-border: #a8d8dd;
+  --color-text: #1b2735;
+  --color-text-muted: #64748b;
+  --color-text-subtle: #8b98a9;
+  --color-link: #2f6fb0;
+  --color-success: #1a8a4c;
+  --color-success-soft: #e6f6ec;
+  --color-success-border: #a7dcbb;
+  --color-danger: #d1342f;
+  --color-danger-soft: #fdecec;
+  --color-danger-border: #f2b3b1;
+  --color-warning: #b7791f;
+  --color-warning-soft: #fff5db;
+  --color-warning-border: #f0d48a;
+  --color-info: #2f6fb0;
+  --color-info-soft: #e8f2fc;
+  --color-info-border: #b7d3f0;
+  --color-neutral: #5b6b7d;
+  --color-neutral-soft: #eef1f5;
+  --color-neutral-border: #d3dae2;
+  --radius-lg: 10px;
+  --shadow: 0 4px 16px rgba(16, 24, 40, 0.08);
+  --font-sans: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", "Cascadia Mono", Consolas, monospace;
+  --font-size-xs: 11px;
+  --font-size-sm: 12px;
+  --font-size-md: 13px;
+  --font-size-base: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+}
+
 @import "tailwindcss";
 
 @theme {
@@ -11,4 +59,30 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.auth__card {
+  width: 100%;
+  max-width: 408px;
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+
+.auth__eye {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 4px 6px;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
 }
