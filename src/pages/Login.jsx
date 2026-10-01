@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useSearchParams } from 'react-router-dom';
+import { loginUser } from '../api/authApi';
 import logoLight from '../assets/logo-light.png';
 
 const CheckIcon = () => (
@@ -13,12 +14,39 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [searchParams] = useSearchParams();
   const isSetup = searchParams.get('setup') === '1';
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const { register, handleSubmit, setError, formState: { errors } } = useForm({
     mode: 'all'
   });
+  const [isLoading, setIsLoading] = useState(false);
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    setIsLoading(true);
+    try {
+      let deviceId = localStorage.getItem("deviceId");
+      if (!deviceId) {
+        deviceId = crypto.randomUUID ? crypto.randomUUID() : "dev-" + Date.now();
+        localStorage.setItem("deviceId", deviceId);
+      }
+
+      const payload = {
+        username: data.username,
+        password: data.password,
+        deviceId: deviceId
+      };
+
+      const response = await loginUser(payload);
+      console.log('Login success:', response);
+      if (response?.token) {
+        localStorage.setItem('token', response.token);
+      }
+      // TODO: Navigate to dashboard
+    } catch (err) {
+      console.error('Login error:', err);
+      const errorMsg = err?.message || err?.error || "Username is incorrect.";
+      setError('username', { type: 'manual', message: errorMsg });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -146,9 +174,10 @@ export default function Login() {
 
           <button
             type="submit"
+            disabled={isLoading}
             className="btn btn--block btn--primary w-full h-[36px] bg-[#0f7f8c] hover:bg-[#0c6b76] text-white text-[15px] font-semibold rounded-[6px] transition-colors cursor-pointer"
           >
-            Sign in
+            {isLoading ? 'Signing in...' : 'Sign in'}
           </button>
 
           <p className="auth__footer text-center text-[14px] text-[#64748b]">

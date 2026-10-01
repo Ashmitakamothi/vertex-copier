@@ -6,6 +6,14 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [react(), svgr(), tailwindcss()],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://vertex-rest.neptunefxcrm.com',
+        changeOrigin: true,
+      }
+    }
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
