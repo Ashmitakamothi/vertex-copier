@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import logoLight from '../assets/logo-light.png';
 
 const CheckIcon = () => (
@@ -11,6 +11,8 @@ const CheckIcon = () => (
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
+  const [searchParams] = useSearchParams();
+  const isSetup = searchParams.get('setup') === '1';
   const { register, handleSubmit, formState: { errors } } = useForm({
     mode: 'all'
   });
@@ -82,8 +84,12 @@ export default function Login() {
       <main className="auth__panel flex-1 grid place-items-center bg-[#f4f6f9] px-[32px] py-[40px]">
         <form onSubmit={handleSubmit(onSubmit)} className="auth__card w-full">
           <div className="auth__card-head">
-            <h2 className="text-[32px] font-bold text-[#1b2735] mb-2 tracking-tight">Sign in</h2>
-            <p className="text-[15px] text-[#64748b]">Enter your username and password</p>
+            <h2 className="text-[32px] font-bold text-[#1b2735] mb-2 tracking-tight">
+              {isSetup ? 'Set up copy trading' : 'Sign in'}
+            </h2>
+            <p className="text-[15px] text-[#64748b]">
+              {isSetup ? 'Sign in, then choose your trading account and role' : 'Enter your username and password'}
+            </p>
           </div>
 
           <div className="field-host">
@@ -135,7 +141,7 @@ export default function Login() {
               />
               <span className="text-[14px] text-[#64748b]">Remember me</span>
             </label>
-            <a href="#" className="text-[13px] text-[#2F6FB0] hover:text-[#0c6b76] cursor-pointer" style={{ fontFamily: '"IBM Plex Sans", "Segoe UI", system-ui, sans-serif' }}>Forgot password?</a>
+            <a href="#" className="text-[13px] text-[#2F6FB0] hover:text-[#0c6b76] hover:underline cursor-pointer" style={{ fontFamily: '"IBM Plex Sans", "Segoe UI", system-ui, sans-serif' }}>Forgot password?</a>
           </div>
 
           <button
@@ -146,7 +152,11 @@ export default function Login() {
           </button>
 
           <p className="auth__footer text-center text-[14px] text-[#64748b]">
-            First time here? <Link to="/setup" className="text-[12px] text-[#2F6FB0] hover:text-[#0c6b76] cursor-pointer" style={{ fontFamily: '"IBM Plex Sans", "Segoe UI", system-ui, sans-serif' }}>Set up copy trading</Link>
+            {isSetup ? (
+              <>Just want to sign in? <Link to="?" className="text-[12px] text-[#2F6FB0] hover:text-[#0c6b76] hover:underline cursor-pointer" style={{ fontFamily: '"IBM Plex Sans", "Segoe UI", system-ui, sans-serif' }}>Back to sign in</Link></>
+            ) : (
+              <>First time here? <Link to="?setup=1" className="text-[12px] text-[#2F6FB0] hover:text-[#0c6b76] hover:underline cursor-pointer" style={{ fontFamily: '"IBM Plex Sans", "Segoe UI", system-ui, sans-serif' }}>Set up copy trading</Link></>
+            )}
           </p>
         </form>
       </main>

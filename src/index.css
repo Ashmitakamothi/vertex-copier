@@ -85,4 +85,11 @@ body {
   color: var(--color-text-muted);
   font-size: var(--font-size-sm);
   font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.auth__eye:hover {
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
 }
