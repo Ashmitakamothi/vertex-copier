@@ -74,27 +74,27 @@ export default function Login() {
 
           <ul className="space-y-5">
             <li className="flex gap-4">
-              <div className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center bg-[var(--color-sidebar-hover)] mt-1">
+              <span className="auth__tick flex-shrink-0 w-[22px] h-[22px] rounded-full flex items-center justify-center bg-[#ffffff14] border border-white/20 mt-[2px]">
                 <CheckIcon />
-              </div>
+              </span>
               <div>
                 <h3 className="font-semibold text-white text-base">Real-time trade replication</h3>
                 <p className="text-sm text-[var(--color-sidebar-text)] mt-1">Master orders are mirrored to your account within seconds of being opened.</p>
               </div>
             </li>
             <li className="flex gap-4">
-              <div className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center bg-[var(--color-sidebar-hover)] mt-1">
+              <span className="auth__tick flex-shrink-0 w-[22px] h-[22px] rounded-full flex items-center justify-center bg-[#ffffff14] border border-white/20 mt-[2px]">
                 <CheckIcon />
-              </div>
+              </span>
               <div>
                 <h3 className="font-semibold text-white text-base">Per-subscription risk controls</h3>
                 <p className="text-sm text-[var(--color-sidebar-text)] mt-1">Lot caps, daily loss limits and drawdown stops that you set yourself.</p>
               </div>
             </li>
             <li className="flex gap-4">
-              <div className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center bg-[var(--color-sidebar-hover)] mt-1">
+              <span className="auth__tick flex-shrink-0 w-[22px] h-[22px] rounded-full flex items-center justify-center bg-[#ffffff14] border border-white/20 mt-[2px]">
                 <CheckIcon />
-              </div>
+              </span>
               <div>
                 <h3 className="font-semibold text-white text-base">Transparent performance history</h3>
                 <p className="text-sm text-[var(--color-sidebar-text)] mt-1">Every copied trade, skip reason and fee recorded and searchable.</p>
@@ -103,9 +103,9 @@ export default function Login() {
           </ul>
         </div>
 
-        <div className="px-[56px] pb-[40px]">
-          <p className="text-sm text-[var(--color-text-subtle)]">&copy; VertexPro. All rights reserved.</p>
-        </div>
+        <p className="auth__copyright text-[12px] text-[#7F8EA6] px-[56px] pb-[32px]" style={{ fontFamily: '"IBM Plex Sans", "Segoe UI", system-ui, sans-serif' }}>
+          &copy; VertexPro. All rights reserved.
+        </p>
       </aside>
 
       {/* Right Panel */}
@@ -127,7 +127,7 @@ export default function Login() {
             <input
               type="text"
               placeholder="Enter your username"
-              className={`form-control w-full h-[36px] px-[12px] py-0 text-[14px] rounded-[6px] border outline-none transition-colors placeholder:text-[#a0aec0] text-[#1b2735] ${errors.username ? 'border-[#d1342f] is-invalid' : 'border-[#dfe5ec] focus:border-[#0f7f8c] focus:ring-1 focus:ring-[#0f7f8c]'}`}
+              className={`form-control w-full h-[36px] px-[12px] py-0 text-[14px] rounded-[6px] border outline-none transition-colors placeholder:text-[#a0aec0] text-[#1b2735] ${errors.username ? 'border-[#d1342f] is-invalid' : 'border-[#dfe5ec] focus:border-[#0f7f8c] focus:ring-[3px] focus:ring-[#0f7f8c]/20'}`}
               {...register('username', { required: 'Username is required.' })}
             />
             {errors.username ? (
@@ -145,7 +145,7 @@ export default function Login() {
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Enter your password"
-                className={`form-control w-full h-[36px] px-[12px] py-0 text-[14px] rounded-[6px] border outline-none transition-colors placeholder:text-[#a0aec0] text-[#1b2735] ${errors.password ? 'border-[#d1342f] is-invalid' : 'border-[#dfe5ec] focus:border-[#0f7f8c] focus:ring-1 focus:ring-[#0f7f8c]'}`}
+                className={`form-control w-full h-[36px] px-[12px] py-0 text-[14px] rounded-[6px] border outline-none transition-colors placeholder:text-[#a0aec0] text-[#1b2735] ${errors.password ? 'border-[#d1342f] is-invalid' : 'border-[#dfe5ec] focus:border-[#0f7f8c] focus:ring-[3px] focus:ring-[#0f7f8c]/20'}`}
                 {...register('password', { required: 'Password is required.' })}
               />
               <button
